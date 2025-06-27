@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api_db:
+    container_name: api_db
+    image: docker.io/postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: api_db
+      PGDATA: /var/lib/postgresql/data
+    volumes:
+      - api_volume:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    networks:
+      - agrico-net
+    restart: always
+
+networks:
+  agrico-net:
+    driver: bridge
+
+volumes:
+  api_volume:
+
